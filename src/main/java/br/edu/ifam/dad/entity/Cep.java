@@ -1,61 +1,85 @@
 package br.edu.ifam.dad.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "endereco") // Define o nome do elemento XML raiz
+@XmlAccessorType(XmlAccessType.PROPERTY)
 @Entity
-@Table(name = "cep")
+@Table(name = "cep_cache")
 public class Cep {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @Column(length = 9, unique = true)
     private String cep;
 
     private String logradouro;
     private String bairro;
     private String cidade;
-    private String estado;
+    private String uf;
 
     public Cep() {
     }
 
-    public Cep(String cep, String logradouro, String bairro, String cidade, String estado) {
+    public Cep(String cep, String logradouro, String bairro, String cidade, String uf) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cidade = cidade;
-        this.estado = estado;
+        this.uf = uf;
     }
 
-    // Getters e Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
 
-    public String getCep() { return cep; }
-    public void setCep(String cep) { this.cep = cep; }
+    public String getCep() {
+        return cep;
+    }
 
-    public String getLogradouro() { return logradouro; }
-    public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
 
-    public String getBairro() { return bairro; }
-    public void setBairro(String bairro) { this.bairro = bairro; }
+    public String getLogradouro() {
+        return logradouro;
+    }
 
-    public String getCidade() { return cidade; }
-    public void setCidade(String cidade) { this.cidade = cidade; }
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
 
     @Override
     public String toString() {
         return "Cep{" +
-                "id=" + id +
-                ", cep='" + cep + '\'' +
+                "cep='" + cep + '\'' +
                 ", logradouro='" + logradouro + '\'' +
                 ", bairro='" + bairro + '\'' +
                 ", cidade='" + cidade + '\'' +
-                ", estado='" + estado + '\'' +
+                ", uf='" + uf + '\'' +
                 '}';
     }
 }
